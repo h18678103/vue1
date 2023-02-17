@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"/>
-        <title>初识Vue</title>
-        <script type="text/javascript" src="../js/vue.js"></script>
-    </head>
-    <body>
-        <h1>123</h1>
-        <div id="root">
-            <h1>456</h1>
-        </div>
-        <script type="text/javascript">
-            Vue.config.productionTip = false
-        </script>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{Date.now()}}</h1>
+        <h2>{{1+2}}:456789,{{name}}</h2>
+        <h1>单向数据绑定<input type="text" v-bind:value="name"></h1>
+        <h1>单向数据绑定<input type="text" :value="name"></h1>
+        <h1>双向数据绑定<input type="text" v-model:value="name"></h1>
+        <h1>双向数据绑定<input type="text" v-model="name"></h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#root',
+            // 对象式data
+            // data: {
+            //     name: '你好!'
+            // }
+            // 函数式data
+            // data: function () {
+            //     console.log('@@@' + this) //this是vue实例对象
+            //     return {
+            //         name: '你好!'
+            //     }
+            // }
+            // 简写函数式data
+            // data() {
+            //     return {
+            //         name: '你好!'
+            //     }
+            // }
+            // 箭头函数式data
+            data: () => {
+                console.log('@@@' + this) //this是Window对象
+                return {
+                    name: '你好!'
+                }
+            }
+        })
+        console.log(vm)
+        // setTimeout(() => {
+        //     vm.$mount('#root') //去掉el可以这样挂载
+        // }, 1000)
+
+
+    </script>
+</body>
+
 </html>
